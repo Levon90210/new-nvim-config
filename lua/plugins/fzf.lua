@@ -17,47 +17,20 @@ return {
         { "<leader>fw", "<cmd>FzfLua grep_cword<cr>", desc = "Fzf: Search Word Under Cursor" },
     },
     opts = function()
-        local actions = require("fzf-lua.actions")
         return {
-            winopts = {
-                height = 0.85,
-                width = 0.85,
-                row = 0.35,
-                col = 0.50,
-                border = "rounded", -- Elegant border style
-                fullscreen = false,
-                preview = {
-                    border = "rounded",
-                    wrap = "nowrap",      -- Avoid line wrapping inside the code previewer
-                    default = "builtin",  -- Use fzf-lua's lightning-fast native Lua previewer
-                    layout = "flex",      -- Flips horizontal/vertical dynamically based on terminal aspect ratio
-                    flip_columns = 120,   -- Columns required to switch to horizontal split
-                    scrollbar = "float",
-                },
-            },
             keymap = {
-                -- Keymaps active within the built-in preview/prompt windows
                 builtin = {
                     ["<C-d>"] = "preview-page-down",
                     ["<C-u>"] = "preview-page-up",
                 },
                 fzf = {
-                    -- Native fzf binary keybind overrides go here
                     ["ctrl-a"] = "toggle-all",
-                    ["ctrl-q"] = "select-all+accept", -- Send all matched selections to the Quickfix list
-                },
-            },
-            actions = {
-                files = {
-                    -- Inherit standard actions (open in split, vsplit, tab, etc.)
-                    ["default"] = actions.file_edit_or_qf,
-                    ["ctrl-s"] = actions.file_split,
-                    ["ctrl-v"] = actions.file_vsplit,
-                    ["ctrl-t"] = actions.file_tabedit,
+                    ["ctrl-q"] = "select-all+accept",
+                    ["tab"] = "down",
+                    ["shift-tab"] = "up",
                 },
             },
             pickers = {
-                -- Custom provider flags nested safely inside the pickers block
                 files = {
                     formatter = "path.filename_first",
                     cmd = "fd --type f --hidden --follow --exclude .git",
