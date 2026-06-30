@@ -1,7 +1,7 @@
 return {
   "stevearc/oil.nvim",
   lazy = false,
-  dependencies = { "nvim-tree/nvim-web-devicons" },
+  dependencies = { "echasnovski/mini.icons" },
   keys = {
     { "-", "<cmd>Oil<cr>", desc = "Oil: Open Parent Directory" },
     { "<leader>of", function() require("oil").open_float() end, desc = "Oil: Open Floating Window" },

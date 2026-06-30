@@ -9,9 +9,20 @@ return {
         end,
     },
     {
+        "echasnovski/mini.icons",
+        lazy = false,
+        opts = {},
+        init = function()
+            package.preload["nvim-web-devicons"] = function()
+                require("mini.icons").mock_nvim_web_devicons()
+                return package.loaded["nvim-web-devicons"]
+            end
+        end,
+    },
+    {
         "nvim-lualine/lualine.nvim",
         lazy = false,
-        dependencies = { "nvim-tree/nvim-web-devicons" },
+        dependencies = { "echasnovski/mini.icons" },
         opts = function()
             return {
                 options = {
@@ -56,72 +67,6 @@ return {
                     },
                 },
                 extensions = { "lazy", "fzf", "oil" },
-            }
-        end,
-    },
-    {
-        "b0o/incline.nvim",
-        event = "BufReadPre",
-        dependencies = { "nvim-tree/nvim-web-devicons" },
-        opts = function()
-            return {
-                window = {
-                    margin = {
-                        horizontal = 1,
-                        vertical = 0,
-                    },
-                },
-                highlight = {
-                    groups = {
-                        InclineNormal = { guibg = "#1f2335", guifg = "#a9b1d6" },
-                        InclineNormalNC = { guibg = "#16161e", guifg = "#787c99" }, -- Dims out on inactive splits
-                    },
-                },
-                render = function(props)
-                    local buf_name = vim.api.nvim_buf_get_name(props.buf)
-                    local filename = vim.fn.fnamemodify(buf_name, ":t")
-
-                    if filename == "" then
-                        filename = "[No Name]"
-                    end
-
-                    local devicons = require("nvim-web-devicons")
-                    local icon, icon_color = devicons.get_icon_color(filename)
-
-                    local buffer_display = {}
-
-                    if icon then
-                        table.insert(buffer_display, { icon .. " ", guifg = icon_color })
-                    end
-
-                    local is_modified = vim.api.nvim_get_option_value("modified", { buf = props.buf })
-                    if is_modified then
-                        table.insert(buffer_display, { filename, gui = "bold,italic", guifg = "#ff9e64" })
-                        table.insert(buffer_display, { " ●", guifg = "#ff9e64" })
-                    else
-                        table.insert(buffer_display, { filename })
-                    end
-
-                    local severities = {
-                        error = vim.diagnostic.severity.ERROR,
-                        warn = vim.diagnostic.severity.WARN,
-                    }
-
-                    local error_count = #vim.diagnostic.get(props.buf, { severity = severities.error })
-                    local warn_count = #vim.diagnostic.get(props.buf, { severity = severities.warn })
-
-                    if error_count > 0 or warn_count > 0 then
-                        table.insert(buffer_display, { " │ " })
-                        if error_count > 0 then
-                            table.insert(buffer_display, { " " .. error_count .. " ", guifg = "#db4b4b" })
-                        end
-                        if warn_count > 0 then
-                            table.insert(buffer_display, { " " .. warn_count, guifg = "#e0af68" })
-                        end
-                    end
-
-                    return buffer_display
-                end,
             }
         end,
     },
