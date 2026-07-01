@@ -82,7 +82,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('i', '<C-k>', vim.lsp.buf.signature_help, { buffer = event.buf, desc = "LSP: Signature help" })
     vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { buffer = event.buf, desc = "LSP: Rename symbol" })
 
-    vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { buffer = event.buf, desc = "Go to previous diagnostic" })
-    vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { buffer = event.buf, desc = "Go to next diagnostic" })
+    vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { buffer = event.buf, desc = "LSP: Go to previous diagnostic" })
+    vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { buffer = event.buf, desc = "LSP: Go to next diagnostic" })
 end,
 })
