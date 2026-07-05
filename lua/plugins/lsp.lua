@@ -5,6 +5,7 @@ return {
         dependencies = {
             { "mason-org/mason.nvim", opts = {} },
             "neovim/nvim-lspconfig",
+            "saghen/blink.cmp",
         },
         config = function()
             require("mason").setup()
@@ -17,6 +18,9 @@ return {
                     "hls",
                 },
                 automatic_enable = true,
+            })
+            vim.lsp.config("*", {
+                capabilities = require("blink.cmp").get_lsp_capabilities(),
             })
             vim.diagnostic.config({
                 virtual_text = { severity = { min = vim.diagnostic.severity.WARN } },
