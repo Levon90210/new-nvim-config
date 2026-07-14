@@ -35,3 +35,6 @@ key("n", "<C-d>", "<C-d>zz", { desc = "Scroll down and center" })
 key("n", "<C-u>", "<C-u>zz", { desc = "Scroll up and center" })
 key("n", "n", "nzzzv", { desc = "Next search match" })
 key("n", "N", "Nzzzv", { desc = "Previous search match" })
+
+key("n", "q", "<Nop>")
+key("n", "<leader>q", "q")
