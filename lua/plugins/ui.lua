@@ -46,8 +46,7 @@ return {
                             "diff",
                             symbols = { added = " ", modified = " ", removed = " " }
                         },
-                    },
-                    lualine_c = {
+                    }, lualine_c = {
                         {
                             "filename",
                             file_status = true,
