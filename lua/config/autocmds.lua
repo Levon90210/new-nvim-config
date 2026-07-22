@@ -75,7 +75,15 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('n', 'gr', fzf.lsp_references, { buffer = event.buf, desc = "Fzf: Go to references" })
     vim.keymap.set('n', '<leader>ca', fzf.lsp_code_actions, { buffer = event.buf, desc = "Fzf: Code actions" })
 
-    vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { buffer = event.buf, desc = "LSP: Diagnostic under cursor"})
+    vim.keymap.set('n', '<leader>d', function()
+        vim.diagnostic.open_float(nil, {
+            border = "rounded",
+            max_width = 150,
+            max_height = 20,
+            source = "if_many",
+            focusable = false,
+        })
+    end, { buffer = event.buf, desc = "LSP: Diagnostic under cursor"})
     vim.keymap.set('n', '<leader>D', fzf.diagnostics_document, { buffer = event.buf, desc = "Fzf: Document diagnostics" })
     vim.keymap.set('n', '<leader>WD', fzf.diagnostics_workspace, { buffer = event.buf, desc = "Fzf: Workspace diagnostics" })
 
