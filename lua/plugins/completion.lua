@@ -53,8 +53,15 @@ return {
             documentation = {
                 auto_show = true,
                 auto_show_delay_ms = 200,
+                window = {
+                    border = "rounded",
+                    max_width = 80,
+                    max_height = 20,
+                }
             },
             menu = {
+                border = "rounded",
+                scrollbar = false,
                 draw = {
                     columns = {
                         { "kind_icon" },
@@ -71,18 +78,6 @@ return {
                         },
                     },
                 },
-            },
-        },
-
-        windows = {
-            completion = {
-                border = "rounded",
-                scrollbar = false,
-            },
-            documentation = {
-                border = "rounded",
-                max_width = 80,
-                max_height = 20,
             },
         },
 
