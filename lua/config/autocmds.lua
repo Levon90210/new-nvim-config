@@ -103,3 +103,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { buffer = event.buf, desc = "LSP: Go to next diagnostic" })
 end,
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "python",
+    callback = function()
+        vim.bo.indentexpr = "nvim_treesitter#indent()"
+    end,
+})
