@@ -31,8 +31,6 @@ key("t", "<C-j>", "<C-\\><C-n><C-w>j", { desc = "Terminal: Go to lower window" }
 key("t", "<C-k>", "<C-\\><C-n><C-w>k", { desc = "Terminal: Go to upper window" })
 key("t", "<C-l>", "<C-\\><C-n><C-w>l", { desc = "Terminal: Go to right window" })
 
-key("n", "<C-d>", "<C-d>zz", { desc = "Scroll down and center" })
-key("n", "<C-u>", "<C-u>zz", { desc = "Scroll up and center" })
 key("n", "n", "nzzzv", { desc = "Next search match" })
 key("n", "N", "Nzzzv", { desc = "Previous search match" })
 

@@ -21,7 +21,12 @@ return {
 
         snippets = { preset = "default" },
 
-        signature = { enabled = true },
+        signature = {
+            enabled = true,
+            window = {
+                border = "rounded",
+            },
+        },
 
         sources = {
             default = { "lsp", "path", "snippets", "buffer" },
