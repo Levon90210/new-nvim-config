@@ -6,7 +6,6 @@ return {
 		bigfile = { enabled = true },
 		indent = { enabled = true },
 		input = { enabled = true },
-		picker = { enabled = true },
 		notifier = { enabled = true, timeout = 3000 },
 		quickfile = { enabled = true },
 		scope = { enabled = true },
@@ -14,8 +13,6 @@ return {
 		statuscolumn = { enabled = true },
 		words = { enabled = true },
 		scratch = { enabled = true },
-		terminal = { enabled = true },
-		rename = { enabled = true },
 		gitbrowse = { enabled = true },
 		lazygit = { enabled = true },
 		zen = { enabled = true },
@@ -36,23 +33,24 @@ return {
 			desc = "Snacks: Select scratch buffer",
 		},
 		{
-			"<leader>ts",
+			"<leader>bd",
 			function()
-				Snacks.terminal()
+				Snacks.bufdelete()
 			end,
-			desc = "Snacks: Toggle terminal",
+			desc = "Buffer: Delete",
 		},
 		{
 			"<leader>gb",
 			function()
 				Snacks.gitbrowse()
 			end,
+			mode = { "n", "v" },
 			desc = "Snacks: Browse in Git",
 		},
 		{
 			"<leader>gg",
 			function()
-				Snacks.scratch()
+				Snacks.lazygit()
 			end,
 			desc = "Snacks: LazyGit",
 		},
@@ -64,4 +62,8 @@ return {
 			desc = "Snacks: Toggle zen mode",
 		},
 	},
+	config = function(_, opts)
+		require("snacks").setup(opts)
+		Snacks.toggle.inlay_hints():map("<leader>uh")
+	end,
 }

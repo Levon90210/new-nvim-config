@@ -49,6 +49,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 
 -- Create an autocmd that runs whenever an LSP attaches to a file
 vim.api.nvim_create_autocmd("LspAttach", {
+	group = augroup("lsp_attach"),
 	callback = function(event)
 		local client = vim.lsp.get_client_by_id(event.data.client_id)
 
@@ -61,7 +62,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "gd", fzf.lsp_definitions, { buffer = event.buf, desc = "Fzf: Go to definition" })
 		vim.keymap.set("n", "gi", fzf.lsp_implementations, { buffer = event.buf, desc = "Fzf: Go to implementation" })
 		vim.keymap.set("n", "gr", fzf.lsp_references, { buffer = event.buf, desc = "Fzf: Go to references" })
-		vim.keymap.set("n", "<leader>ca", fzf.lsp_code_actions, { buffer = event.buf, desc = "Fzf: Code actions" })
+		vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = event.buf, desc = "LSP: Code actions" })
 
 		vim.keymap.set("n", "<leader>d", function()
 			vim.diagnostic.open_float(nil, {
@@ -91,19 +92,19 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			})
 		end, { buffer = event.buf, desc = "LSP: Hover documentation" })
 		vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, { buffer = event.buf, desc = "LSP: Signature help" })
-		vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { buffer = event.buf, desc = "LSP: Rename symbol" })
+		vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { buffer = event.buf, desc = "LSP: Rename symbol" })
 
-		vim.keymap.set(
-			"n",
-			"[d",
-			vim.diagnostic.goto_prev,
-			{ buffer = event.buf, desc = "LSP: Go to previous diagnostic" }
-		)
-		vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { buffer = event.buf, desc = "LSP: Go to next diagnostic" })
+		vim.keymap.set("n", "[d", function()
+			vim.diagnostic.jump({ count = -1 })
+		end, { buffer = event.buf, desc = "LSP: Go to previous diagnostic" })
+		vim.keymap.set("n", "]d", function()
+			vim.diagnostic.jump({ count = 1 })
+		end, { buffer = event.buf, desc = "LSP: Go to next diagnostic" })
 	end,
 })
 
 vim.api.nvim_create_autocmd("FileType", {
+	group = augroup("python_indent"),
 	pattern = "python",
 	callback = function()
 		vim.bo.indentexpr = "nvim_treesitter#indent()"
