@@ -18,11 +18,6 @@ key("n", "<leader>sh", "<C-w>s", { desc = "Split horizontally" })
 key("n", "<leader>se", "<C-w>=", { desc = "Equalize split sizes" })
 key("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" })
 
-key("n", "<C-h>", "<C-w>h", { desc = "Go to left window" })
-key("n", "<C-j>", "<C-w>j", { desc = "Go to lower window" })
-key("n", "<C-k>", "<C-w>k", { desc = "Go to upper window" })
-key("n", "<C-l>", "<C-w>l", { desc = "Go to right window" })
-
 key("t", "<Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 key("n", "<leader>tv", "<cmd>vsplit | terminal<CR>", { desc = "Terminal vertical" })
 key("n", "<leader>th", "<cmd>split | terminal<CR>", { desc = "Terminal horizontal" })
