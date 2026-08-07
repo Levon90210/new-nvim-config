@@ -18,20 +18,10 @@ key("n", "<leader>sh", "<C-w>s", { desc = "Split horizontally" })
 key("n", "<leader>se", "<C-w>=", { desc = "Equalize split sizes" })
 key("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" })
 
-<<<<<<< HEAD
-key("t", "<Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
-key("n", "<leader>tv", "<cmd>vsplit | terminal<CR>", { desc = "Terminal vertical" })
-key("n", "<leader>th", "<cmd>split | terminal<CR>", { desc = "Terminal horizontal" })
-key("t", "<C-h>", "<C-\\><C-n><C-w>h", { desc = "Terminal: Go to left window" })
-key("t", "<C-j>", "<C-\\><C-n><C-w>j", { desc = "Terminal: Go to lower window" })
-key("t", "<C-k>", "<C-\\><C-n><C-w>k", { desc = "Terminal: Go to upper window" })
-key("t", "<C-l>", "<C-\\><C-n><C-w>l", { desc = "Terminal: Go to right window" })
-=======
 key("n", "<C-h>", "<C-w>h", { desc = "Go to left window" })
 key("n", "<C-j>", "<C-w>j", { desc = "Go to lower window" })
 key("n", "<C-k>", "<C-w>k", { desc = "Go to upper window" })
 key("n", "<C-l>", "<C-w>l", { desc = "Go to right window" })
->>>>>>> 0b20ad0 (I don't even know)
 
 key("n", "n", "nzzzv", { desc = "Next search match" })
 key("n", "N", "Nzzzv", { desc = "Previous search match" })
