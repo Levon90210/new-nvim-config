@@ -10,16 +10,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
--- Streamlined Terminal behavior
-vim.api.nvim_create_autocmd("TermOpen", {
-	group = augroup("terminal_settings"),
-	callback = function()
-		vim.opt_local.number = false
-		vim.opt_local.relativenumber = false
-		vim.cmd("startinsert")
-	end,
-})
-
 -- Auto-refresh files altered externally (e.g., git checkouts)
 vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "TermClose", "TermLeave" }, {
 	group = augroup("check_time"),
