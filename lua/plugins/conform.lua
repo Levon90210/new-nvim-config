@@ -40,6 +40,11 @@ return {
 			shfmt = { append_args = { "-i", "2" } },
 		},
 		format_on_save = function(bufnr)
+			local path = vim.api.nvim_buf_get_name(bufnr)
+			if path:find("/tests/", 1, true) then
+				return
+			end
+
 			if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
 				return
 			end

@@ -41,12 +41,6 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = augroup("lsp_attach"),
 	callback = function(event)
-		local client = vim.lsp.get_client_by_id(event.data.client_id)
-
-		if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
-			vim.lsp.inlay_hint.enable(true, { buffer = event.buf })
-		end
-
 		local fzf = require("fzf-lua")
 
 		vim.keymap.set("n", "gd", fzf.lsp_definitions, { buffer = event.buf, desc = "Fzf: Go to definition" })

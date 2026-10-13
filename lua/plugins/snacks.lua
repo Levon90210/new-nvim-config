@@ -14,7 +14,6 @@ return {
 		words = { enabled = true },
 		scratch = { enabled = true },
 		gitbrowse = { enabled = true },
-		lazygit = { enabled = true },
 		zen = { enabled = true },
 	},
 	keys = {
@@ -46,13 +45,6 @@ return {
 			end,
 			mode = { "n", "v" },
 			desc = "Snacks: Browse in Git",
-		},
-		{
-			"<leader>gg",
-			function()
-				Snacks.lazygit()
-			end,
-			desc = "Snacks: LazyGit",
 		},
 		{
 			"<leader>z",
