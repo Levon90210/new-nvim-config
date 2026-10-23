@@ -2,9 +2,16 @@ return {
     {
         "mrjones2014/smart-splits.nvim",
         lazy = false,
+        dependencies = {
+            {
+                "smart-splits-nvim/backend-tmux",
+                main = "smart-splits-backend-tmux",
+            },
+        },
         opts = {
-            at_edge = "stop",
-            default_amount = 3,
+            mux = { backend = "smart-splits-backend-tmux" },
+            move = { at_edge = "stop" },
+            resize = { amount = 3 },
         },
         keys = {
             { "<C-h>", function() require("smart-splits").move_cursor_left() end, desc = "Move left across splits" },

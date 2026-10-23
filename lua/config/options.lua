@@ -11,7 +11,6 @@ opt.inccommand = "split"
 opt.jumpoptions = "stack"
 opt.matchpairs:append("<:>")
 
-
 opt.grepprg = "rg --vimgrep"
 opt.grepformat = "%f:%l:%c:%m"
 
