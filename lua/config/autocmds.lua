@@ -75,7 +75,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
 				border = "rounded",
 			})
 		end, { buffer = event.buf, desc = "LSP: Hover documentation" })
-		vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, { buffer = event.buf, desc = "LSP: Signature help" })
+		for _, lhs in ipairs({ "<C-s>", "<C-k>" }) do
+			vim.keymap.set("i", lhs, function()
+				vim.lsp.buf.signature_help({ border = "rounded" })
+			end, { buffer = event.buf, desc = "LSP: Signature help" })
+		end
 		vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { buffer = event.buf, desc = "LSP: Rename symbol" })
 
 		vim.keymap.set("n", "[d", function()

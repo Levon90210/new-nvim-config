@@ -8,6 +8,8 @@ return {
         { "<leader>fg", "<cmd>FzfLua live_grep<cr>", desc = "Fzf: Live Grep" },
         { "<leader>fb", "<cmd>FzfLua buffers<cr>", desc = "Fzf: Buffers" },
         { "<leader>fo", "<cmd>FzfLua oldfiles<cr>", desc = "Fzf: Recent Files" },
+        { "<leader>fs", "<cmd>FzfLua lsp_document_symbols<cr>", desc = "Fzf: Symbols in File" },
+        { "<leader>fS", "<cmd>FzfLua lsp_live_workspace_symbols<cr>", desc = "Fzf: Workspace Symbols" },
         -- Git Operations
         { "<leader>gf", "<cmd>FzfLua git_files<cr>", desc = "Fzf: Git Files" },
         { "<leader>gs", "<cmd>FzfLua git_status<cr>", desc = "Fzf: Git Status" },
