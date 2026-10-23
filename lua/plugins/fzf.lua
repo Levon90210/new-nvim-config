@@ -14,7 +14,13 @@ return {
         -- Advanced Pickers & Search Engineering
         { "<leader>fr", "<cmd>FzfLua resume<cr>", desc = "Fzf: Resume Last Search" },
         { "<leader>fc", "<cmd>FzfLua combine pickers=oldfiles;git_files<cr>", desc = "Fzf: Combined (Recent + Git)" },
-        { "<leader>fw", "<cmd>FzfLua grep_cword<cr>", desc = "Fzf: Search Word Under Cursor" },
+        {
+            "<leader>fw",
+            function()
+                require("fzf-lua").grep({ search = vim.fn.expand("<cword>") })
+            end,
+            desc = "Fzf: Search Word Under Cursor",
+        },
     },
     opts = function()
         return {
@@ -30,17 +36,16 @@ return {
                     ["shift-tab"] = "up",
                 },
             },
-            pickers = {
-                files = {
-                    formatter = "path.filename_first",
-                    cmd = "fd --type f --hidden --follow --exclude .git",
-                },
-                buffers = {
-                    formatter = "path.filename_first",
-                },
-                grep = {
-                    cmd = "rg --vimgrep --hidden --line-number --column --glob '!.git/'",
-                },
+            files = {
+                formatter = "path.filename_first",
+                cmd = "fd --type f --hidden --follow --exclude .git",
+            },
+            buffers = {
+                formatter = "path.filename_first",
+            },
+            grep = {
+                cmd = "rg --fixed-strings --vimgrep --hidden --line-number --column --glob '!.git/'",
+                no_esc = true,
             },
         }
     end,

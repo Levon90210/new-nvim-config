@@ -15,9 +15,8 @@ return {
             vim.lsp.config("lua_ls", {
                 settings = { Lua = { diagnostics = { globals = { "vim" } } } },
             })
-            vim.lsp.config("clangd", {
-                init_options = { fallbackFlags = { '-std=c++20' } },
-            })
+            -- Let project compile commands select the C/C++ standard; clangd's
+            -- fallbackFlags apply to both languages in the same server.
             require("mason-lspconfig").setup({
                 ensure_installed = {
                     "clangd",
